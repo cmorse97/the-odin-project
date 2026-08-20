@@ -31,8 +31,64 @@ function getComputerChoice() {
   }
 }
 
-let userSelection = getUserChoice();
-let computerSelection = getComputerChoice();
+function isGameWinner(userScore, computerScore) {
+  if (userScore === computerScore) {
+    console.log('We have a draw!');
+    console.log(`FINAL SCORE: ${userScore} - ${computerScore}`);
+  } else if (userScore > computerScore) {
+    console.log(`User wins the game!`);
+    console.log(`FINAL SCORE: ${userScore} - ${computerScore}`);
+  } else {
+    console.log(`Computer wins the game!`);
+    console.log(`FINAL SCORE: ${computerScore} - ${userScore} `);
+  }
+}
 
-console.log(userSelection);
-console.log(computerSelection);
+function playGame() {
+  let userScore = 0;
+  let computerScore = 0;
+  let userSelection = '';
+  let computerSelection = '';
+
+  function playRound(userChoice, computerChoice) {
+    console.log('USER: ', userSelection);
+    console.log('COMPUTER: ', computerSelection);
+    console.log(isRoundWinner(userSelection, computerSelection));
+  }
+
+  function isRoundWinner(userChoice, computerChoice) {
+    if (userChoice === computerChoice) {
+      return `Draw! ${userChoice} and ${computerChoice} are the same!`;
+    } else if (userChoice === 'rock' && computerChoice === 'scissors') {
+      userScore++;
+      return `User wins! ${userChoice} beats ${computerChoice}!`;
+    } else if (userChoice === 'scissors' && computerChoice === 'paper') {
+      userScore++;
+      return `User wins! ${userChoice} beats ${computerChoice}!`;
+    } else if (userChoice === 'paper' && computerChoice === 'rock') {
+      userScore++;
+      return `User wins! ${userChoice} beats ${computerChoice}!`;
+    } else {
+      computerScore++;
+      return `Computer wins! ${computerChoice} beats ${userChoice}!`;
+    }
+  }
+
+  let roundCount = 1;
+
+  while (roundCount < 6) {
+    userSelection = getUserChoice();
+    computerSelection = getComputerChoice();
+    console.log('ROUND: ', roundCount);
+    console.log(`USER SCORE: ${userScore} - COMPUTER SCORE: ${computerScore}`);
+    playRound(userSelection, computerSelection);
+    roundCount++;
+  }
+
+  console.log('---------------');
+  console.log('   GAME OVER');
+  console.log('---------------');
+  isGameWinner(userScore, computerScore);
+}
+
+playGame();
