@@ -3,4 +3,36 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-height: 100vh;
+  min-width: 480px;
+}
+
+#scoreboard {
+  border: 1px solid black;
+  padding: 8px 16px;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+#scoreboard h3 {
+  text-align: center;
+  margin: 0;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.score-bug p {
+  text-align: center;
+}
+
+#user-selection-btns {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
