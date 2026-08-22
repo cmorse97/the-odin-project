@@ -1,30 +1,42 @@
-// Etch-A-Sketch
-// Create a square div inside of the 'container' div that has a solid border
-// Add an event listener that changes the background color of the square when the mouse hovers over it in the browser
-
 const container = document.querySelector('#container');
-const square = document.createElement('div');
-// const createGridBtn = document.querySelector('#create-grid-btn');
+const createGridBtn = document.querySelector('#create-grid-btn');
+const clearGridBtn = document.querySelector('#clear-grid-btn');
+const randomBtn = document.querySelector('#random-btn');
+const squares = container.childNodes;
 
-square.classList.add('square');
-container.appendChild(square);
+createGridBtn.addEventListener('click', createGridOfSquares);
+clearGridBtn.addEventListener('click', clearGrid);
+randomBtn.addEventListener('click', generateRandomImage);
 
-square.addEventListener('mouseover', () => {
-  square.classList.add('filled-square');
-});
+function createGridOfSquares() {
+  createGridBtn.classList.add('hidden');
+  clearGridBtn.classList.remove('hidden');
+  randomBtn.classList.remove('hidden');
+  let grid = 16 * 16;
+  for (let i = 1; i <= grid; i++) {
+    const square = document.createElement('div');
+    square.classList.add('square');
 
-square.addEventListener('mouseleave', () => {
-  setTimeout(() => {
+    square.addEventListener('mouseover', () => {
+      square.classList.add('filled-square');
+    });
+
+    container.appendChild(square);
+  }
+}
+
+function clearGrid() {
+  squares.forEach((square) => {
     square.classList.remove('filled-square');
-  }, 1000);
-});
+  });
+}
 
-// createGridBtn.addEventListener('click', createGridOfSquares);
-
-// function createGridOfSquares(num) {
-//   createGridBtn.classList.add('hidden');
-//   let grid = num * num;
-//   for (let i = 1; i <= grid; i++) {
-//     container.appendChild(square);
-//   }
-// }
+function generateRandomImage() {
+  squares.forEach((square) => {
+    square.classList.remove('filled-square');
+    let randomFill = Math.round(Math.random());
+    if (randomFill) {
+      square.classList.add('filled-square');
+    }
+  });
+}
