@@ -9,20 +9,34 @@ clearGridBtn.addEventListener('click', clearGrid);
 randomBtn.addEventListener('click', generateRandomImage);
 
 function createGridOfSquares() {
+  let userInput = prompt('Enter a number of square per side: Max 100');
+  if (userInput === '') {
+    userInput = 16;
+  }
   createGridBtn.classList.add('hidden');
   clearGridBtn.classList.remove('hidden');
   randomBtn.classList.remove('hidden');
-  let grid = 16 * 16;
+  let grid = userInput * userInput;
+  const fragment = document.createDocumentFragment();
+  const gridPercentage = 100 / userInput;
   for (let i = 1; i <= grid; i++) {
     const square = document.createElement('div');
     square.classList.add('square');
+
+    square.style.flexBasis = `${gridPercentage}%`;
+    square.style.height = `${gridPercentage}%`;
+
+    if (userInput > 50) {
+      square.style.borderBlockWidth = '0.5px';
+    }
 
     square.addEventListener('mouseover', () => {
       square.classList.add('filled-square');
     });
 
-    container.appendChild(square);
+    fragment.appendChild(square);
   }
+  container.appendChild(fragment);
 }
 
 function clearGrid() {
