@@ -1,15 +1,20 @@
-const userSelectionBtns = document.querySelectorAll('button');
+const userSelectionBtns = document.querySelector(
+  '#user-selection-btns',
+).children;
+const selectionDiv = document.querySelector('#user-selection-btns');
 const userScoreBug = document.querySelector('#user-score');
 const computerScoreBug = document.querySelector('#computer-score');
 const roundSelections = document.querySelector('#round-selections');
 const roundResult = document.querySelector('#round-result');
+const startGameBtn = document.querySelector('#start-game-btn');
+const restartGameBtn = document.querySelector('#restart-game-btn');
 let userScore = 0;
 let computerScore = 0;
 
-userScoreBug.textContent = `${userScore}`;
-computerScoreBug.textContent = `${computerScore}`;
+startGameBtn.addEventListener('click', startGame);
+restartGameBtn.addEventListener('click', restartGame);
 
-userSelectionBtns.forEach((btn) => {
+for (const btn of userSelectionBtns) {
   btn.addEventListener('click', () => {
     if (roundSelections && roundSelections.hasChildNodes()) {
       roundSelections.replaceChildren();
@@ -21,7 +26,26 @@ userSelectionBtns.forEach((btn) => {
     let computerSelection = getComputerSelection();
     playRound(userSelection, computerSelection);
   });
-});
+}
+
+function startGame() {
+  userScore = 0;
+  computerScore = 0;
+  userScoreBug.textContent = `${userScore}`;
+  computerScoreBug.textContent = `${computerScore}`;
+  startGameBtn.classList.add('hidden');
+  selectionDiv.classList.remove('hidden');
+}
+
+function restartGame() {
+  userScore = 0;
+  computerScore = 0;
+  userScoreBug.textContent = `${userScore}`;
+  computerScoreBug.textContent = `${computerScore}`;
+  roundResult.textContent = '';
+  restartGameBtn.classList.add('hidden');
+  selectionDiv.classList.remove('hidden');
+}
 
 function displayRoundResult(winnerSelection, loserSelection) {
   const para = document.createElement('p');
@@ -52,11 +76,15 @@ function getComputerSelection() {
 
 function isGameWinner(userScore, computerScore) {
   if (userScore === 5 && computerScore < 5) {
+    selectionDiv.classList.add('hidden');
+    restartGameBtn.classList.remove('hidden');
     roundResult.replaceChildren();
     roundSelections.replaceChildren();
     const result = `User wins the game!`;
     roundResult.textContent = result;
   } else if (computerScore === 5 && userScore < 5) {
+    selectionDiv.classList.add('hidden');
+    restartGameBtn.classList.remove('hidden');
     roundResult.replaceChildren();
     roundSelections.replaceChildren();
     const result = 'Computer wins the game!';

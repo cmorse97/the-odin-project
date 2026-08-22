@@ -30,9 +30,26 @@ body {
   text-align: center;
 }
 
+#game-controls {
+  margin: 16px 0;
+}
+
+.block-btn {
+  display: block;
+  margin: 0 auto;
+}
+
 #user-selection-btns {
-  margin-top: 16px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.text-display {
+  text-align: center;
 }
