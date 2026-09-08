@@ -9,12 +9,13 @@ body {
   background: #eee;
   color: #333;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
 body,
 input,
 button {
-  font-size: 16px;
+  font-size: 18px;
   font-family:
     system-ui,
     -apple-system,
@@ -37,4 +38,63 @@ h1 {
   text-align: center;
   margin-top: 16px;
   margin-bottom: 8px;
+}
+
+#calculator {
+  border: solid 1px black;
+  border-radius: 8px;
+  margin: 8px auto;
+  padding: 8px;
+  width: 720px;
+  height: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+}
+
+#calc-display {
+  border: solid 0.75px black;
+  padding: 4px 8px;
+  text-align: end;
+  border-radius: 4px;
+  min-width: 100%;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 3.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+#calc-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+#calc-digits {
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  gap: 10px;
+  justify-content: center;
+}
+
+.digit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  font-size: 1.5rem;
+  height: 50px;
+}
+
+.digit.zero {
+  grid-column: 2/3;
+}
+
+#calc-operators {
+  display: grid;
+  grid-template-columns: repeat(1, 50px);
+  gap: 10px;
 }
