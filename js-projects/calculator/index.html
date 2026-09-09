@@ -11,28 +11,28 @@
     <h1>Calculator</h1>
     <div id="calculator">
       <div id="calc-display">
-        <div id="text-display">1234</div>
+        <p id="text-display">0</p>
       </div>
       <div id="calc-inputs">
         <div id="calc-digits">
-          <button class="digit">7</button>
-          <button class="digit">8</button>
-          <button class="digit">9</button>
-          <button class="digit">4</button>
-          <button class="digit">5</button>
-          <button class="digit">6</button>
-          <button class="digit">1</button>
-          <button class="digit">2</button>
-          <button class="digit">3</button>
-          <button class="digit">C</button>
-          <button class="digit zero">0</button>
-          <button class="digit">=</button>
+          <input type="button" value="7" class="btn digit" />
+          <input type="button" value="8" class="btn digit" />
+          <input type="button" value="9" class="btn digit" />
+          <input type="button" value="4" class="btn digit" />
+          <input type="button" value="5" class="btn digit" />
+          <input type="button" value="6" class="btn digit" />
+          <input type="button" value="1" class="btn digit" />
+          <input type="button" value="2" class="btn digit" />
+          <input type="button" value="3" class="btn digit" />
+          <input type="button" value="C" id="clear" class="btn" />
+          <input type="button" value="0" class="btn digit zero" />
+          <input type="button" value="=" id="equals" class="btn" />
         </div>
         <div id="calc-operators">
-          <button class="digit">%</button>
-          <button class="digit">X</button>
-          <button class="digit">-</button>
-          <button class="digit">+</button>
+          <input type="button" value="/" id="divide" class="btn" />
+          <input type="button" value="X" id="multiply" class="btn" />
+          <input type="button" value="-" id="subtract" class="btn" />
+          <input type="button" value="+" id="add" class="btn" />
         </div>
       </div>
     </div>
