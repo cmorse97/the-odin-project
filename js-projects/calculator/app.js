@@ -15,7 +15,7 @@ let digitBtns = document.querySelectorAll('.digit');
 
 // Event Listeners
 clearBtn.addEventListener('click', handleClear);
-// equalsBtn.addEventListener('click', handleClick);
+equalsBtn.addEventListener('click', handleEquals);
 divideBtn.addEventListener('click', handleOperator);
 multiplyBtn.addEventListener('click', handleOperator);
 subtractBtn.addEventListener('click', handleOperator);
@@ -42,16 +42,25 @@ function handleClear() {
   display.innerHTML = '0';
 }
 
-function handleEquals(e) {
-  // Do something...
+function handleEquals() {
+  if (display.innerHTML === '0') {
+    alert('Invalid operation!');
+    return;
+  }
+
+  if (operator === null) {
+    alert('Must select an operator!');
+    return;
+  }
+
+  firstOperand = getFirstOperand();
+  secondOperand = getSecondOperand();
+  operate(operator, firstOperand, secondOperand);
 }
 
 function handleOperator(e) {
-  firstOperand = parseInt(display.innerHTML);
   operator = operatorSelector(e.target.value);
   display.innerHTML += e.target.value;
-  console.log(firstOperand);
-  console.log(operator);
 }
 
 function operatorSelector(operation) {
@@ -65,6 +74,18 @@ function operatorSelector(operation) {
     case '+':
       return add;
   }
+}
+
+function getFirstOperand() {
+  const regex = /[\+\-\X\/]/;
+  firstOperand = parseInt(display.innerHTML.split(regex)[0]);
+  return firstOperand;
+}
+
+function getSecondOperand() {
+  const regex = /[\+\-\X\/]/;
+  secondOperand = parseInt(display.innerHTML.split(regex)[1]);
+  return secondOperand;
 }
 
 // Basic operations
@@ -85,8 +106,10 @@ function divide(num1, num2) {
 }
 
 function operate(operation, operand1, operand2) {
+  console.log(operation, operand1, operand2);
   let result = operation(operand1, operand2);
-
+  console.log(result);
+  display.innerHTML = result;
   return result;
 }
 
