@@ -106,9 +106,13 @@ function divide(num1, num2) {
 }
 
 function operate(operation, operand1, operand2) {
-  console.log(operation, operand1, operand2);
+  if (operation === divide && operand2 === 0) {
+    alert("Don't divide by 0, bro...");
+    handleClear();
+    return;
+  }
+
   let result = operation(operand1, operand2);
-  console.log(result);
   display.innerHTML = result;
   return result;
 }
